@@ -1,0 +1,391 @@
+//header file
+
+#include <iostream>
+#include<bits/stdc++.h>
+#include<string>
+#include<conio.h>
+#include<fstream>
+using namespace std;
+struct players
+{
+    string name;
+    float credit;
+    string type;
+    string team;
+};
+// functions used in the program
+void display_list();
+void select_players();
+void rules();
+void self_exit();
+void add_players();
+int no_of_players_in_each_team(players dream[])
+int no_of_wicket(players dream[])
+int no_of_batsmen(players dream[])
+int no_of_all(players dream[])
+int no_of_bowler(players dream[])
+float total_credits(players dream[])
+bool is_allconditions(players dream[])
+bool is_unique(int selected_player[])
+
+//main function
+int main()
+{
+    system("cls");
+    system("color 0A");
+    cout<<"\n\n\n\t\tDREAM XI";
+    //add_players();
+
+    cout<<"\n\n\t1.PLAYER LIST\n\t2.SELECT PLAYERS\n\t3.RULES FOR PLAYER SELECTION\n\t4.EXIT";
+    cout<<"\n\n\t";
+    short int choice;
+    cin>>choice;
+
+    switch(choice)
+    {
+        case 1:
+        {
+            display_list();
+            break;
+        }
+        case 2:
+        {
+            select_players();
+            break;
+        }
+        case 3:
+        {
+            rules();
+            break;
+        }
+        case 4:
+        {
+            self_exit();
+            break;
+        }
+        default:
+        {
+            cout<<"\n\n\tINVALID INPUT";
+            cout<<"\n\tPRESS ANY KEY TO CONTINUE";
+        }
+        getch();
+        main();
+    }
+
+    return 0;
+
+}
+
+//function to add players
+void add_players()
+{
+    ofstream myfile("players.txt");
+    system("cls");
+    cout<<"\n\n\tFILL THE PLAYERS LIST";
+    cout<<"\n\n\tPRESS CTRL+Z to QUIT"<<endl;
+    int id;
+    string name;
+    float credit;
+    string type;
+    string team;
+    while(cin>>id>>name>>credit>>type>>team)
+    {
+        myfile<<id<<" "<<name<<" "<<credit<<" "<<type<<" "<<team<<endl;
+    }
+}
+
+//function to display player list
+void display_list()
+{
+    cout<<"\n\n\tPLAYERS LIST:";
+    int id;
+    string name;
+    float credit;
+    string type;
+    string team;
+    ifstream temp1("players.txt");
+    bool wicket=1,bat=1,all=1,bowl=1;
+    while(temp1>>id>>name>>credit>>type>>team)
+    {
+        if(wicket==1 && type=="wicket")
+        {
+            cout<<"\n\nWICKET KEEPERS\n\n";
+            wicket=0;
+        }
+        else if(bat==1 && type=="bat")
+        {
+            cout<<"\n\nBATSMEN\n\n";
+            bat=0;
+        }
+        else if(all==1 && type=="all")
+        {
+            cout<<"\n\nALL ROUNDERS\n\n";
+            all=0;
+        }
+        else if(bowl==1 && type=="bowl")
+        {
+            cout<<"\n\nBOWLERS\n\n";
+            bowl=0;
+        }
+        cout<<id<<" "<<name<<" "<<credit<<" "<<team<<endl;
+    }
+}
+
+// function to add number of players in each team
+int no_of_players_in_each_team(players dream[])
+{
+    int count=0;
+    for(int i=0;i<11;i++)
+    {
+        if(dream[i].team=="rcb")
+            count++;
+    }
+    return count;
+}
+// function to add number of wicket keeper
+int no_of_wicket(players dream[])
+{
+    int count=0;
+    for(int i=0;i<11;i++)
+    {
+        if(dream[i].type=="wicket")
+            count++;
+    }
+    return count;
+}
+// function to add number of batsmen
+int no_of_batsmen(players dream[])
+{
+    int count=0;
+    for(int i=0;i<11;i++)
+    {
+        if(dream[i].type=="bat")
+            count++;
+    }
+    return count;
+}
+
+// function to add number of all rounder
+int no_of_all(players dream[])
+{
+    int count=0;
+    for(int i=0;i<11;i++)
+    {
+        if(dream[i].type=="all")
+            count++;
+    }
+    return count;
+}
+// function to add number of bowlers
+int no_of_bowler(players dream[])
+{
+    int count=0;
+    for(int i=0;i<11;i++)
+    {
+        if(dream[i].type=="bowl")
+            count++;
+    }
+    return count;
+}
+//function to add number of credits
+float total_credits(players dream[])
+{
+    float count=0;
+    for(int i=0;i<11;i++)
+    {
+        count=count+dream[i].credit;
+    }
+    return count;
+}
+//function to check all conditions
+bool is_allconditions(players dream[])
+{
+    if(no_of_players_in_each_team(dream)>7)
+    {
+        cout<<"\n\n\tYOU SHOULD SELECT ATLEAST 4 CSK PLAYERS";
+        return 0;
+    }
+    if(11-no_of_players_in_each_team(dream)>7)
+    {
+        cout<<"\n\n\tYOU SHOULD SELECT ATLEAST 4 RCB PLAYERS";
+        return 0;
+    }
+    if(no_of_wicket(dream)<1)
+    {
+        cout<<"\n\n\tYOU SHOULD SELECT ATLEAST 1 WICKET KEEPER";
+        return 0;
+    }
+    if(no_of_wicket(dream)>4)
+    {
+        cout<<"\n\n\tYOU CAN SELECT ONLY 4 WICKET KEEPER";
+        return 0;
+    }
+    if(no_of_batsmen(dream)<3)
+    {
+        cout<<"\n\n\tYOU SHOULD SELECT ATLEAST 3 BATSMEN";
+        return 0;
+    }
+    if(no_of_batsmen(dream)>6)
+    {
+        cout<<"\n\n\tYOU CAN SELECT ONLY 6 BATSMEN";
+        return 0;
+    }
+    if(no_of_all(dream)<1)
+    {
+        cout<<"\n\n\tYOU SHOULD SELECT ATLEAST 1 ALL ROUNDER";
+        return 0;
+    }
+    if(no_of_all(dream)>4)
+    {
+        cout<<"\n\n\tYOU CAN SELECT ONLY 4 ALL ROUNDER";
+        return 0;
+    }
+    if(no_of_bowler(dream)<3)
+    {
+        cout<<"\n\n\tYOU SHOULD SELECT ATLEAST 3 BOWLER";
+        return 0;
+    }
+    if(no_of_bowler(dream)>6)
+    {
+        cout<<"\n\n\tYOU CAN SELECT ONLY 6 BOWLER";
+        return 0;
+    }
+    cout<<"\n\n\t total credit="<<total_credits(dream);
+
+    if(total_credits(dream)>100)
+    {
+        cout<<"\n\n\tNOT HAVE EXCEEDED 100 CREDITS";
+        return 0;
+    }
+
+    return true;
+
+
+}
+
+//function to check all are unique numbers or not
+bool is_unique(int selected_player[])
+{
+    unordered_map<int,int>m;
+    for(int i=0;i<11;i++)
+    {
+        m[selected_player[i]]=0;
+    }
+    for(int i=0;i<11;i++)
+    {
+        m[selected_player[i]]++;
+        if(m[selected_player[i]]>1)
+            return false;
+    }
+    return true;
+
+}
+
+// function to select players from list
+void select_players()
+{
+    cout<<"\n\n\tPLAYERS LIST:";
+    int id;
+    string name;
+    float credit;
+    string type;
+    string team;
+    ifstream temp1("players.txt");
+    bool wicket=1,bat=1,all=1,bowl=1;
+    players player[50];
+    while(temp1>>id>>name>>credit>>type>>team)
+    {
+        if(wicket==1 && type=="wicket")
+        {
+            cout<<"\n\nWICKET KEEPERS\n\n";
+            wicket=0;
+        }
+        else if(bat==1 && type=="bat")
+        {
+            cout<<"\n\nBATSMEN\n\n";
+            bat=0;
+        }
+        else if(all==1 && type=="all")
+        {
+            cout<<"\n\nALL ROUNDERS\n\n";
+            all=0;
+        }
+        else if(bowl==1 && type=="bowl")
+        {
+            cout<<"\n\nBOWLERS\n\n";
+            bowl=0;
+        }
+        cout<<id<<" "<<name<<" "<<credit<<" "<<team<<endl;
+        player[id].name=name;
+        player[id].credit=credit;
+        player[id].type=type;
+        player[id].team=team;
+    }
+    while(1)
+    {
+        cout<<"\n\n\tSELECT 11 PLAYERS \n\n";
+        int selected_players[11];
+        for(int i=0;i<11;i++)
+        {
+            cin>>selected_players[i];
+        }
+
+        if(is_unique(selected_players)==false)
+        {
+            cout<<"\n\n\tYOU HAVE SELECTED A PLAYER MULTIPLE TIMES";
+            continue;
+        }
+        players dream[11];
+        for(int i=0;i<11;i++)
+        {
+            dream[i].name=player[selected_players[i]].name;
+            dream[i].credit=player[selected_players[i]].credit;
+            dream[i].type=player[selected_players[i]].type;
+            dream[i].team=player[selected_players[i]].team;
+        }
+        for(int i=0;i<11;i++)
+        {
+            cout<<dream[i].name<<" "<<dream[i].credit<<" "<<dream[i].type<<" "<<dream[i].team<<endl;
+        }
+        if(is_allconditions(dream)==true)
+        {
+            system("cls");
+            cout<<"\n\n\t total credit="<<total_credits(dream);
+            cout<<"\n\n\tYOUR DREAM TEAM LIST"<<endl;
+            for(int i=0;i<11;i++)
+            {
+            cout<<dream[i].name<<" "<<dream[i].credit<<" "<<dream[i].type<<" "<<dream[i].team<<endl;
+            }
+            break;
+
+        }
+    }
+}
+
+// function to display rules
+void rules()
+{
+    system("cls");
+    cout<<"\n\n\tSELECT 11 PLAYERS";
+    cout<<"\n\n\tYOU SHOULD SELECT ATLEAST 4 CSK PLAYERS";
+    cout<<"\n\n\tYOU SHOULD SELECT ATLEAST 4 RCB PLAYERS";
+    cout<<"\n\n\tYOU SHOULD SELECT ATLEAST 1 WICKET KEEPER";
+    cout<<"\n\n\tYOU CAN SELECT ONLY 4 WICKET KEEPER";
+    cout<<"\n\n\tYOU SHOULD SELECT ATLEAST 3 BATSMEN";
+    cout<<"\n\n\tYOU CAN SELECT ONLY 6 BATSMEN";
+    cout<<"\n\n\tYOU SHOULD SELECT ATLEAST 1 ALL ROUNDER";
+    cout<<"\n\n\tYOU CAN SELECT ONLY 4 ALL ROUNDER";
+    cout<<"\n\n\tYOU SHOULD SELECT ATLEAST 3 BOWLER";
+    cout<<"\n\n\tYOU CAN SELECT ONLY 6 BOWLER";
+    cout<<"\n\n\tNOT HAVE EXCEEDED 100 CREDITS";
+
+}
+
+
+//function to exit
+void self_exit()
+{
+    system("cls");
+    cout<<"\n\n\tTHANK YOU FOR USING";
+    exit(0);
+}
