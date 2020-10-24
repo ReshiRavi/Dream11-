@@ -1,0 +1,45 @@
+# Dream11-
+Selecting dream 11 players using certain creteria
+PLAYERS LIST
+1 abd 10 wicket rcb
+2 msd 9 wicket csk
+3 patel 8.5 wicket rcb
+4 jagdesan 8 wicket csk
+5 phillipe 8 wicket rcb
+6 v_kohli 10.5 bat rcb
+7 faf 10 bat csk
+8 rayudu 9 bat csk
+9 watson 9 bat csk
+10 padikkal 9 bat rcb
+11 finch 8.5 bat rcb
+12 gaikwad 8 bat csk
+13 kedar 8 bat csk
+14 gurkeet 8 bat rcb
+15 vijay 8 bat csk
+16 despande 8 bat rcb
+17 sam_curran 9.5 all csk
+18 jaddu 9 all csk
+19 morris 9.5 all rcb
+20 sundar 8.5 all rcb
+21 dube 8 all rcb
+22 moen_ali 8.5 all rcb
+23 ahmed 7.5 all rcb
+24 santner 8.5 all csk
+25 chahal 9 bowl rcb
+26 chahar 8.5 bowl csk
+27 thakur 8.5 bowl csk
+28 udana 8 bowl rcb
+29 saini 8.5 bowl rcb
+30 siraj 8 bowl rcb
+31 chawla 8 bowl csk
+32 k_sharma 8 bowl csk
+33 ngidi 8.5 bowl csk
+34 hazelwood 8.5 bowl csk
+35 steyn 8.5 bowl rcb
+36 zampa 8.5 bowl rcb
+37 tahir 9 bowl csk
+38 umesh 8.5 bowl rcb
+39 asif 8 bowl csk
+40 sai_kishore 8 bowl csk
+41 negi 8 bowl rcb
+42 m_kumar 7.5 bowl csk
